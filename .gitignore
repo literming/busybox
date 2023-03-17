@@ -8,6 +8,7 @@
 *.s
 Kbuild
 Config.in
+root.*
 
 #
 # Never ignore these
