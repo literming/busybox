@@ -11,19 +11,36 @@ fi
 
 if test $1 = "base" 
 then
-	qemu-system-riscv64 -nographic -machine virt -kernel ./Image_v5.18 -append "root=/dev/vda rw console=ttyS0" -drive file=root.bin,format=raw,id=hd0 -device virtio-blk-device,drive=hd0
+	qemu-system-riscv64 \
+		-nographic -machine virt \
+		-kernel ./Image_v5.18 \
+		-append "root=/dev/vda rw console=ttyS0" \
+		-drive file=root.bin,format=raw,id=hd0 \
+		-device virtio-blk-device,drive=hd0
 elif test $1 = "debian" 
 then
 	echo ...
-elif test $1 = "-help" 
+elif test $1 = "qemu-v1"
+then
+qemu-system-riscv64 \
+    -nographic \
+    -machine virt \
+    -kernel Image_v5.18 \
+    -append "root=/dev/vda ro console=ttyS0" \
+    -drive file=busybox.bin,format=raw,id=hd0 \
+    -device virtio-blk-device,drive=hd0 \
+    -netdev user,id=eth0 \
+    -device virtio-net-device,netdev=eth0
+elif test $1 = "--help" 
 then
 	echo "Usage"
 	echo " sh start.sh [options]"
 	echo "Options"
-	echo " base: busybox on riscv64 linux system"
-	echo " -help: print this page"	
+	echo " base: busybox on qemu riscv64 linux system"
+	echo " qemu-v1: busybox on platform FPGA"
+	echo " help: print this page"	
 
 else
 	echo "parameter option error"
-	echo "sh start.sh -help for help"
+	echo "sh start.sh --help for help"
 fi

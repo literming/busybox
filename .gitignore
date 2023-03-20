@@ -9,6 +9,7 @@
 Kbuild
 Config.in
 root.*
+busybox.bin*
 
 #
 # Never ignore these
