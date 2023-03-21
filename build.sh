@@ -57,7 +57,7 @@ then
 
     sudo cp rcS rootfs/etc/init.d/rcS
     sudo chmod +x rootfs/etc/init.d/rcS
-
+    
     sudo umount rootfs
 fi
 
