@@ -34,8 +34,8 @@ then
     sudo umount mnt
     rmdir mnt
 elif test $1 = "qemu-v1"
-# CROSS_COMPILE=riscv64-linux-gnu- LDFLAGS=--static make defconfig
 then
+    CROSS_COMPILE=riscv64-linux-gnu- LDFLAGS=--static make defconfig
     if [ -f busybox.bin ]; then
         echo "warning: busybox.bin file already exist"
         sudo mv busybox.bin busybox.bin_bak
