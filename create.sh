@@ -21,7 +21,7 @@ if [ ! -d rootfs ]; then
 fi
 
 sudo mount $PART rootfs
-sudo CROSS_COMPILE=riscv64-linux-gnu- LDFLAGS=--static make install CONFIG_PREFIX=rootfs
+#sudo CROSS_COMPILE=riscv64-linux-gnu- LDFLAGS=--static make install CONFIG_PREFIX=rootfs
 sudo mkdir -p rootfs/proc rootfs/sys rootfs/dev rootfs/boot
 sudo mkdir -p rootfs/etc
 sudo touch rootfs/etc/fstab
@@ -29,5 +29,8 @@ sudo mkdir -p rootfs/etc/init.d
 
 sudo cp rcS rootfs/etc/init.d/rcS
 sudo chmod +x rootfs/etc/init.d/rcS
+
+sudo cp /home/test/buildroot/ultrarisc/linux-test/arch/riscv/boot/Image.gz rootfs/boot/Image.gz
+sudo cp /home/test/buildroot/ultrarisc/linux-test/arch/riscv/boot/dts/ultrarisc/ultrarisc-a1-v1.dtb rootfs/boot/ultrarisc-a1-v1.dtb
 
 sudo umount rootfs
